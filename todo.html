@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html class="no-js" lang=""></html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="todo.css">
+  <title>To do</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <!-- Font Awesome cdn css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+
+</head>
+<header>
+    <h1>My To Do List</h1>
+</header>
+<body>
+    <form action="">
+        <input type="text" id="myInput" placeholder="..." class="todo-input">
+        <button class="add-todo" type="submit">
+            ADD A TASK
+        </button>
+    </form>
+    <div class="todo-container">
+        <ul class="todo-list">
+            <div><li>Hit the gym</li> <button class="created"></button> <button class="deleted"></button></div>
+        </ul>
+
+    </div>
+    <script src="todo.js"></script>
+</body>
