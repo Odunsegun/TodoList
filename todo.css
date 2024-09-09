@@ -5,26 +5,222 @@
 }
 
 body{
-    background-color: rgb(184, 184, 105);
+    background-color:#eeeeee;
     color: white;
     font-family:'Courier New', Courier, monospace;
     min-height: 100vh;
 }
+main{
+    margin-left: -80px;
+    
+    padding-bottom: 80px; 
+}
 
-header{
+.goldenMorning{
+    margin-top: 20px; 
+    margin-left: 300px;
+    color: black;
+    
+}
+
+.title{
+    margin-top: 20px;
+    margin-left: 300px;
+    color: black;
+    font-size: 36px;
+}
+.title input{
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: initial;
+    font-size: 36px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    width: auto;
+    min-width: 1ch;
+}
+
+h3 p{
+    margin-left: 300px;
+    padding-bottom: 100px;
+    color: black;
+}
+
+
+.side-header{
+    justify-content: center;
+}
+
+.side-header-text{
+    padding-top: 16px;
+    padding-left: 70px;
+    font-size: 24px;
+    color: black;
+}
+
+.sidebar{
+    position: fixed;
+    top: 1%;
+    left: 2%;
+    height: 98%;
+    width: 250px;
+    padding: 0px 0px;
+    background: white;
+    border-radius: 5px;
+    transition: width 0.9s ease, padding 0.9s ease;
+    box-sizing: border-box;
+}
+.sidebar.close{
+    width: auto;
+    background-color: #eeeeee;
+    overflow: hidden;
+    z-index: 100;
+    transition: width 0.9s ease, padding 0.9s ease;
+}
+
+.sidebar.close .side-menu,
+.sidebar.close .menu-list {
+    display: none; 
+}
+.side-menu{
+    background-color: white;
+}
+.menu-item,
+.sidebar li{
+    height: 80px;
+    background: white;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    width: 15rem;
+    
+    cursor: pointer;
+    padding: .5rem;
+}
+.menu-item-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+    transition: 0.5s ease;
+}
+.emoji,
+.sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
     font-size: 20px;
 }
 
-header,
-form{
+.menu-input{
+    transform: scale(1.5); 
+    margin-left: 25px; 
+    margin-right: 9px;
+}
+
+.menu-item-text{
+    color: black;
+    border: none;
+    background-color: white;
+    transition: 0.5s ease;
+}
+
+.sidebar .toggle.arrow{
+    cursor: pointer;
+    font-size: 22px;
+    top: 2%;
+    right: 1px;
+    height: 25px;
+    width: 25px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #707070;
+    z-index: 1;
+    position: absolute;  
+}
+
+.sidebar .toggle.arrow:hover{
+    background-color: beige;
+    color: black;
+}
+.sidebar.close .toggle.arrow{
+    position: static;
+    margin-top: 20px;
+    transform: translateY(-50%) rotate(180deg);
+}
+.menu-item:hover .menu-item-content{
+    background-color: #cecccc; 
+}
+
+.menu-item .menu-item-text{
+    background-color: transparent;
+    border: none; 
+    cursor: pointer;
+}
+
+.menu-item-content:hover .menu-item-text{
+    background-color: transparent; 
+}
+
+.menu-item:hover{
+    background-color: #cecccc; 
+}
+
+.sidebar .menu-bar{
+    height: calc(100% -50px);
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+ /*
+ #taskForm button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+*/
+
+
+
+body,
+.formula{
     min-height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
-form input,
-form button{
+#taskForm {
+    display: flex;
+    flex-direction: column;
+}
+#taskForm label {
+    margin-top: 10px;
+}
+#taskForm input {
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+#taskForm button:hover {
+    background-color: grey;
+}
+.todo-input,
+.add-todo{
     padding: 0.5rem;
     padding-left: 1rem;
     border: none;
@@ -32,21 +228,76 @@ form button{
     background-color: white;
     font-size: 14px;
     transition: 0.3 ease-in-out;
+    margin: 10px 0px;
 }
-
-form button{
-    color:grey;
-    background: white;
+.todo-input{
+    width: 300px;
+}
+.add-todo{
+    color:white;
+    background: blue;
     cursor: pointer;
     transition: all 0.3 ease;
     margin-left: 0.5rem;
+    padding: 10px 180px;
 }
-
-form button:hover {
+.add-todo:hover {
     color: white;
-    background: rgb(251, 198, 207);
+    background: grey;
     transition: 0.4s ease-in;
 }
+.formula{
+    bottom: 10%; 
+    display: none;
+    justify-content: center;
+    padding: 1rem;
+    padding-left: 30%;
+    position: fixed;
+}
+
+.add-task-button{
+    color:white;
+    background:black;
+    cursor: pointer;
+    transition: all 0.3 ease;
+    margin-left: 0.5rem;
+    padding: 10px 200px;
+    border-radius: 5rem;
+    transition: 0.3 ease-in-out;
+}
+.add-task-button:hover {
+    color: rgb(211, 206, 206);
+    background: grey;
+    transition: 0.4s ease-in; 
+}
+.form-add-task-button{
+    position: fixed;
+    bottom: 0; 
+    display: none;
+    justify-content: center;
+    padding: 1rem;
+    padding-left: 30%;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.add-time-button{
+    color:blue;
+    background:rgb(130, 217, 246);
+    cursor: pointer;
+    transition: all 0.3 ease;
+    margin-left: 0.5rem;
+    padding: 10px 200px;
+    border-radius: 5rem;
+    transition: 0.3 ease-in-out;
+}
+.add-time-button:hover {
+    opacity: 0.75;
+    transition: 0.4s ease-in; 
+}
+
 
 .todo-container {
     display: flex;
@@ -54,22 +305,38 @@ form button:hover {
     align-items: center;
 }
 
+.form-container {
+    background-color: white;
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    left: 38.5%;
+    bottom: 12%;
+}
+
+
 .todo-list {
     min-width: 40%;
     list-style: none;
 }
 
 .todo {
+    height: 2rem;
     margin: 0.5rem;
     padding-left: 0.5rem;
     background: white;
     color: black;
-    font-size: 1.5rem;
+    font-size: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: 0.5s;
-    border-radius: 2rem;
+    padding-right: .5rem;
+
 }
 
 .todo li {
@@ -78,11 +345,11 @@ form button:hover {
 
 .deleted, 
 .created {
-    color: white;
-    border-color: pink;
-    padding: 1rem;
+    color: black;
+    padding: 4px;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 10px;
+    border: none;
 }
 
 .created {
@@ -90,13 +357,24 @@ form button:hover {
 }
 
 .deleted {
-    border-top-right-radius: 1.75rem;
-    border-bottom-right-radius: 1.75rem;
     background: rgb(171, 171, 171);
+    justify-content: right;
+    margin-left: 320px;
+    /*margin: 0px 20px*/
+}
+.more{
+    background: rgb(171, 171, 171);
+    justify-content: right;
+    margin-left: 10px;
+    color: black;
+    padding: 4px;
+    cursor: pointer;
+    font-size: 10px;
+    border: none;
 }
 
 .todo-item {
-    padding: 0.5rem 0.5rem;
+    font-size: 12px;
 }
 
 .fa-trash, 
@@ -105,10 +383,40 @@ form button:hover {
 }
 
 .completed {
-    text-decoration: line-through;
     opacity: 0.5;
+    position: relative;
+    transition: opacity 0.3s ease-in-out;
 }
 
+.scribble {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+}
+
+.scribble::after {
+    content: '';
+    position: absolute;
+    left: -20%;
+    top: 40%; 
+    height: 20px;
+    background: none;
+    transform-origin: left center;
+    animation: scribbleEffect 1s ease forwards;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"%3E%3Cpath d="M0 5 Q10 0 20 5 T30 5 Q40 10 50 5 T60 5 Q70 0 80 5 T90 5 Q100 10 110 5" fill="transparent" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /%3E%3C/svg%3E');
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+}
+
+@keyframes scribbleEffect {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
 
 .slide {
     transform: translateX(5rem);
@@ -117,8 +425,8 @@ form button:hover {
 
 
 ul li{
-    color:rgb(251, 198, 207);
-    width: 10rem;
+    color:black;
+    width: 30rem;
     height: 3.2rem;
     cursor: pointer;
     padding: 1rem;
@@ -130,8 +438,194 @@ ul li{
 }
 
 ul li:hover {
-    background: #c97a7a;
-    color: pink;
-    transition: 0.9s ease;
-  }
+    background: ;
+    color: ;
+    transition: 0.5s ease;
+}
 
+
+.todo-container{
+    padding-left: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto; 
+    padding-bottom: 60px; /* Padding for the fixed form */
+}
+
+.todo-form-container{
+    height: 36px;
+    width: 900px;
+    display: flex;
+    background-color: white;
+    align-items: center; 
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+
+.todo-form-input{
+    transform: scale(1.2); 
+    margin-left: 10px; 
+    border-radius: 30%; /* Makes the checkbox circular */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    transition: height 0.9s ease, padding 0.9s ease;
+    width: 500px;
+}
+.dropdown.off{
+    width: auto;
+    background-color: #eeeeee;
+    overflow-y: auto;
+    transition: width 0.9s ease, padding 0.9s ease;
+}
+.dropdown.off .dropdown-side-menu{
+    display: none;
+}
+.dropdown .on.dropdown-toggle{
+    background: black;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dropdown-side-menu{
+    background-color: white;
+}
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+.dropdown-menu.show {
+    display: block;
+}
+.dropdown-menu li {
+    padding: 0.5rem;
+
+    cursor: pointer;
+}
+.dropdown-menu li:hover {
+    background: #f0f0f0;
+}
+.dropdown-menu-list {
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style-type: none;
+    padding-left: 10px;
+
+}
+.dropdown-menu.show {
+    display: block;
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+#completed1 {
+    width: 12px;
+    height: 12px;
+    border-radius: 30%;
+    border: 1px solid red; /* This adds a red border around the checkbox */
+    -webkit-appearance: none; /* Remove the default appearance */
+    appearance: none; /* For browsers that support the appearance property */
+    outline: none;
+}
+
+#personal1 {
+    width: 12px;
+    height: 12px;
+    border-radius: 30%;
+    border: 1px solid blue; /* This adds a red border around the checkbox */
+    -webkit-appearance: none; /* Remove the default appearance */
+    appearance: none; /* For browsers that support the appearance property */
+    outline: none;
+}
+
+#work1 {
+    width: 12px;
+    height: 12px;
+    border-radius: 30%;
+    border: 1px solid green; /* This adds a red border around the checkbox */
+    -webkit-appearance: none; /* Remove the default appearance */
+    appearance: none; /* For browsers that support the appearance property */
+    outline: none;
+}
+
+#dateContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#currentDate {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #6200ea;
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.5);
+}
