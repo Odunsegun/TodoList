@@ -6,19 +6,25 @@ const parentDiv = document.getElementById("parentDiv");
 const personal_name = document.getElementById("personal-name");
 parentDiv.insertBefore(personal_name, parentDiv.firstChild);
 
-
-
-    // Get today's date and format it
+// Get today's date and format it
 const today = new Date();
 const dateString = today.toDateString();
     
-    // Display current date dynamically
+// Display current date dynamically
 const currentDateElement = document.getElementById('currentDate');
 
-    // Set the default date input to today's date (YYYY-MM-DD format)
+// Set the default date input to today's date (YYYY-MM-DD format)
 const taskDateInput = document.getElementById('taskDate');
-const formattedDate = today.toISOString().split('T')[0]; // Get YYYY-MM-DD format
+const formattedDate = today.toISOString().split('T')[0]; // Get  format
 taskDateInput.value = formattedDate;
+
+
+const todoInput = document.querySelector(".todo-input");
+const todoButton = document.querySelector(".add-todo");
+const todoList = document.querySelector(".todo-list");
+
+todoButton.addEventListener("click", addTodo);
+todoList.addEventListener("click", todoAction);
 
 
 
@@ -91,53 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
     
     todos = JSON.parse(localStorage.getItem("todos")) || [];
-
     
-
-    loadTodos();
-});
-
-
-
-const todoInput = document.querySelector(".todo-input");
-const todoButton = document.querySelector(".add-todo");
-const todoList = document.querySelector(".todo-list");
-
-todoButton.addEventListener("click", addTodo);
-todoList.addEventListener("click", todoAction);
-
-/*
-function incrementMenuCounter(selectedCategory) {
-    // Get all the menu items
-    const menuItems = document.querySelectorAll('.menu-item-content');
-
-    menuItems.forEach(item => {
-        const emojiSpan = item.querySelector('.emoji');
-        const textButton = item.querySelector('.menu-item-text');
-        const counterSpan = item.querySelector('.number-list');
-
-        // Check if the selectedCategory emoji or text matches the current menu item
-        if (emojiSpan && textButton) {
-            if (emojiSpan.innerText === selectedCategory.emoji || textButton.innerText === selectedCategory.text) {
-                // Increment the number-list counter
-                const currentCount = parseInt(counterSpan.innerText);
-                counterSpan.innerText = currentCount + 1;
-            }
-        }
-    });
-}*/
-
-editButton.addEventListener('click', (event) => {
-    event.preventDefault();  // Prevent page refresh
-    editTask(todoItem, taskTitle, taskDate, taskTimeStart, taskTimeEnd);
-});
-
-document.addEventListener("DOMContentLoaded", () => {
     const counters = JSON.parse(localStorage.getItem('counters')) || {};
 
     // Set counters on page load
-    const menuItems = document.querySelectorAll(".menu-item");
-    menuItems.forEach(item => {
+    const menuItemss = document.querySelectorAll(".menu-item");
+    menuItemss.forEach(item => {
         const emoji = item.querySelector('.emoji') ? item.querySelector('.emoji').textContent : '';
         const categoryText = item.querySelector('.menu-item-text').textContent.trim();
         const numberList = item.querySelector('.number-list');
@@ -148,7 +113,57 @@ document.addEventListener("DOMContentLoaded", () => {
             numberList.textContent = counterValue;
         }
     });
+
+    const createNewListBtn = document.getElementById("createNewListBtn");
+    const newListForm = document.getElementById("newListForm");
+    const addNewListBtn = document.getElementById("addNewListBtn");
+    const newListInput = document.getElementById("newListInput");
+    const menuList = document.querySelector(".menu-list"); // Ensure this targets the correct element
+
+    // Toggle visibility of new list form on click of "Create new list" button
+    createNewListBtn.addEventListener("click", () => {
+        newListForm.style.display = newListForm.style.display === "none" ? "block" : "none";
+    });
+
+    // Add new list to sidebar when "Add List" button is clicked
+    addNewListBtn.addEventListener("click", () => {
+        const newListName = newListInput.value.trim();
+        if (newListName) {
+            // Create new list item
+            const newListItem = document.createElement("li");
+            newListItem.classList.add("menu-item");
+
+            const newContentDiv = document.createElement("div");
+            newContentDiv.classList.add("menu-item-content");
+
+            const newEmojiSpan = document.createElement("span");
+            newEmojiSpan.classList.add("emoji");
+            newEmojiSpan.textContent = "🆕"; // Example emoji for the new list
+
+            const newListBtn = document.createElement("button");
+            newListBtn.classList.add("menu-item-text");
+            newListBtn.textContent = newListName;
+
+            // Append new elements
+            newContentDiv.appendChild(newEmojiSpan);
+            newContentDiv.appendChild(newListBtn);
+            newListItem.appendChild(newContentDiv);
+            menuList.appendChild(newListItem); // Appends to the sidebar
+
+            // Clear the input field and hide the form
+            newListInput.value = "";
+            newListForm.style.display = "none";
+        }
+    });
+    
+
+    loadTodos();
 });
+
+
+
+
+
 
 function updateCounter(selectedCategory, increment = true) {
     const counters = JSON.parse(localStorage.getItem('counters')) || {};
@@ -199,20 +214,21 @@ function addTodo(event) {
     todoDiv.classList.add("todo");
     const todoItem = document.createElement("li");
 
-    todoItem.innerText = `${categoryEmoji} ${taskTitle} ${taskDate} ${taskTimeStart}  ${taskTimeEnd}`;
+    const dateTimeContainer = document.createElement("span");
+    dateTimeContainer.classList.add("task-datetime");
+    dateTimeContainer.innerText = `Date - ${taskDate} ${taskTimeStart} - ${taskTimeEnd}`;
+
+    todoItem.innerText = `${categoryEmoji} ${taskTitle}`;
     todoItem.classList.add("todo-item");
 
     todoDiv.appendChild(todoItem);
+    todoDiv.appendChild(dateTimeContainer); // Append the date and time container
+
 
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
     deleteButton.classList.add("deleted");
     todoDiv.appendChild(deleteButton);
-
-    const editButton = document.createElement("button");
-    editButton.innerHTML = '<i class="fas fa-edit"></i>';
-    editButton.classList.add("edit");
-    todoDiv.appendChild(editButton);
 
     const moreButton = document.createElement("button");
     moreButton.innerHTML = '<i class="bx bx-dots-vertical-rounded"></i>';
@@ -235,46 +251,6 @@ function addTodo(event) {
     document.getElementById('taskTimeStart').value = "";
     document.getElementById('taskTimeEnd').value = "";
 
-     // Add edit functionality
-     editButton.addEventListener('click', () => editTask(todoItem, taskTitle, taskDate, taskTimeStart, taskTimeEnd));
-}
-
-
-function editTask(todoItem, taskTitle, taskDate, taskTimeStart, taskTimeEnd) {
-    // Create input fields for editing
-    const titleInput = document.createElement('input');
-    titleInput.value = taskTitle;
-
-    const dateInput = document.createElement('input');
-    dateInput.type = 'date';
-    dateInput.value = taskDate;
-
-    const timeStartInput = document.createElement('input');
-    timeStartInput.type = 'time';
-    timeStartInput.value = taskTimeStart;
-
-    const timeEndInput = document.createElement('input');
-    timeEndInput.type = 'time';
-    timeEndInput.value = taskTimeEnd;
-
-    // Create a save button for saving changes
-    const saveButton = document.createElement('button');
-    saveButton.textContent = 'Save';
-    saveButton.classList.add('save');
-
-    // Replace the task item with inputs
-    todoItem.innerHTML = '';
-    todoItem.appendChild(titleInput);
-    todoItem.appendChild(dateInput);
-    todoItem.appendChild(timeStartInput);
-    todoItem.appendChild(timeEndInput);
-    todoItem.appendChild(saveButton);
-
-    // Save the new values
-    saveButton.addEventListener('click', () => {
-        todoItem.innerHTML = `${selectedCategory?.emoji || ''} ${titleInput.value} ${dateInput.value} ${timeStartInput.value} ${timeEndInput.value}`;
-        updateTodoInLocalStorage(taskTitle, titleInput.value, dateInput.value, timeStartInput.value, timeEndInput.value);
-    });
 }
 
 function todoAction(event) {
@@ -324,8 +300,6 @@ function saveTodoToLocalStorage(taskTitle, taskDate, taskTimeStart, taskTimeEnd,
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-
-
 function loadTodos() {
     let todos = JSON.parse(localStorage.getItem("todos")) || [];
     todos.forEach(todo => {
@@ -357,7 +331,7 @@ function loadTodos() {
         todoForm.appendChild(todoDiv);
         todoList.appendChild(todoForm);
 
-        
+        const edit = document.createElement("button");
     });
 }
 
@@ -367,19 +341,6 @@ function removeTodoFromLocalStorage(todoForm) {
     const todoIndex = Array.from(todoList.children).indexOf(todoForm);
     todos.splice(todoIndex, 1);
     localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function updateTodoInLocalStorage(oldTitle, newTitle, newDate, newTimeStart, newTimeEnd) {
-    let todos = JSON.parse(localStorage.getItem("todos")) || [];
-    const todoIndex = todos.findIndex(todo => todo.taskTitle === oldTitle);
-    
-    if (todoIndex !== -1) {
-        todos[todoIndex].taskTitle = newTitle;
-        todos[todoIndex].taskDate = newDate;
-        todos[todoIndex].taskTimeStart = newTimeStart;
-        todos[todoIndex].taskTimeEnd = newTimeEnd;
-        localStorage.setItem("todos", JSON.stringify(todos));
-    }
 }
 
 
@@ -399,3 +360,4 @@ selectListButton = main.querySelector(".on");
 selectListButton.addEventListener("click", () => {
     dropdown.classList.toggle("off");
 });
+

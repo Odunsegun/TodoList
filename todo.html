@@ -109,26 +109,29 @@
                                 <div class="menu-item-content">
                                     <div class="menu-item-content">
                                         <span class="emoji">➕</span>
-                                        <button class="menu-item-text">Create new list</button>
+                                        <button class="menu-item-text" id="createNewListBtn">Create new list</button>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
-
             </div>
-
         </nav>
-
     </figure>
+
+    <form id="newListForm" style="display: none;">
+        <input type="text" id="newListInput" placeholder="Enter new list name">
+        <button type="button" id="addNewListBtn">Add List</button>
+    </form>
+
 </header>
 
 <main id="parentDiv">
     <body>
         <section class="greeting">
             <h1 class="title" id="personal-name">
-                Good Morning <input type="text" id="username" placeholder="Your Name...">!👋
+                👋 Good Morning <input type="text" id="username" placeholder="Your Name...">
             </h1>
 
         </section>
@@ -193,29 +196,6 @@
             
         </form>
         
-
-
-        <div id="taskModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Create New Task</h2>
-                <form id="">
-                    <label for="taskTitle">Task Title:</label>
-                    <input type="text" id="taskTitle" name="taskTitle" required>
-                    
-                    <label for="taskDate">Date:</label>
-                    <input type="date" id="taskDate" name="taskDate" required>
-                    
-                    <label for="taskTimeStart">Start Time:</label>
-                    <input type="time" id="taskTimeStart" name="taskTimeStart" required>
-                    
-                    <label for="taskTimeEnd">End Time:</label>
-                    <input type="time" id="taskTimeEnd" name="taskTimeEnd" required>
-                    
-                    <button type="submit">Add Task</button>
-                </form>
-            </div>
-        </div>
         
         <script src="todo.js"></script>
     </body>
@@ -223,194 +203,3 @@
 
 <footer></footer>
 
-<!-- 
-<!doctype html>
-
-<html class="no-js" lang=""></html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="todo.css">
-  <title>To do</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-
-</head>
-<header>
-    <figure class="sidebar-container">
-        <nav class="sidebar close">
-            <i class='bx bxs-chevron-left toggle arrow'></i>
-            
-            <div class="sidebar-content">
-                <div class="side-menu">
-                    <div class="side-header">
-                        <h2 class="side-header-text">Private</h2>
-                    </div>
-
-                    <div class="menu">
-                        <ul class="menu-list">
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <span class="emoji">🏠</span>
-                                    <button class="menu-item-text">Home</button>
-                                </div>
-                            </li>
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <form action="#">
-                                        <input 
-                                            name="category"
-                                            class="menu-input"  
-                                            type="checkbox" 
-                                            id="completed1" 
-                                            disabled>
-                                        <label for="completed1">
-                                            <button class="menu-item-text">Completed</button>
-                                        </label>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <form action="#">
-                                        <input 
-                                            name="category"
-                                            class="menu-input" 
-                                            type="checkbox" 
-                                            id="personal1" 
-                                            disabled>
-                                        <label for="personal1"><button class="menu-item-text">Personal</button></label>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <form action="#">
-                                        <input 
-                                            name="category"
-                                            class="menu-input" 
-                                            type="checkbox" 
-                                            id="work1" disabled>
-                                        <label for="personal1"><button class="menu-item-text">Work</button></label>
-                                    </form>
-                                </div>
-                            </li>
-                            
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <div class="menu-item-content">
-                                        <span class="emoji">💪</span>
-                                        <button class="menu-item-text">Diet</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <div class="menu-item-content">
-                                        <span class="emoji">📚</span>
-                                        <button class="menu-item-text">List of Books</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <div class="menu-item-content">
-                                        <span class="emoji">🚗</span>
-                                        <button class="menu-item-text">Field Trip List</button>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="menu-item">
-                                <div class="menu-item-content">
-                                    <div class="menu-item-content">
-                                        <span class="emoji">➕</span>
-                                        <button class="menu-item-text">Create new list</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-        </nav>
-
-    </figure>
-</header>
-
-<main id="parentDiv">
-    <body>
-        <section class="greeting">
-            <h1 class="title" id="personal-name">
-                Good Morning <input type="text" placeholder="Your Name...">!👋
-            </h1>
-
-        </section>
-        <div class="todo-container">
-            <ul class="todo-list">
-                
-            </ul>
-        </div>
-
-        <form action="" class="formula">
-            <input type="text" id="myInput" placeholder="..." class="todo-input">
-            <button class="add-todo" type="button">
-                Create new task
-            </button>
-            
-        </form>
-                          
-        <section class="dropdown off">
-            <button class="on dropdown-toggle">Select List ▼</button>
-
-            <div class="dropdown-content">
-                <div class="dropdown-side-menu">
-                    <div class="dropdown-menu">
-                        <ul class="dropdown-menu-list">
-                           
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div id="taskModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Create New Task</h2>
-                <form id="taskForm">
-                    <label for="taskTitle">Task Title:</label>
-                    <input type="text" id="taskTitle" name="taskTitle" required>
-                    
-                    <label for="taskDate">Date:</label>
-                    <input type="date" id="taskDate" name="taskDate" required>
-                    
-                    <label for="taskTimeStart">Start Time:</label>
-                    <input type="time" id="taskTimeStart" name="taskTimeStart" required>
-                    
-                    <label for="taskTimeEnd">End Time:</label>
-                    <input type="time" id="taskTimeEnd" name="taskTimeEnd" required>
-                    
-                    <button type="submit">Add Task</button>
-                </form>
-            </div>
-        </div>
-        
-        <script src="todo.js"></script>
-    </body>
-</main>
-
-<footer></footer>
-
-
--->

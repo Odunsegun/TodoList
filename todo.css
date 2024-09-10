@@ -80,6 +80,15 @@ h3 p{
     transition: width 0.9s ease, padding 0.9s ease;
 }
 
+.menu {
+    max-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .sidebar.close .side-menu,
 .sidebar.close .menu-list {
     display: none; 
@@ -89,7 +98,7 @@ h3 p{
 }
 .menu-item,
 .sidebar li{
-    height: 80px;
+    height: 60px;
     background: white;
     margin-top: 10px;
     list-style: none;
@@ -300,9 +309,11 @@ body,
 
 
 .todo-container {
+    max-height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 }
 
 .form-container {
@@ -322,6 +333,7 @@ body,
 .todo-list {
     min-width: 40%;
     list-style: none;
+    
 }
 
 .todo {
@@ -332,11 +344,22 @@ body,
     color: black;
     font-size: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     transition: 0.5s;
     padding-right: .5rem;
+    max-width: 860px;
+    min-width: 860px;
+}
 
+.todo-form-container{
+    height: 36px;
+    width: 900px;
+    display: flex;
+    background-color: white;
+    align-items: center; 
+    border-radius: 5px;
+    margin-bottom: 4px;
 }
 
 .todo li {
@@ -359,8 +382,8 @@ body,
 .deleted {
     background: rgb(171, 171, 171);
     justify-content: right;
-    margin-left: 320px;
-    /*margin: 0px 20px*/
+
+    margin-left:  320px;
 }
 .more{
     background: rgb(171, 171, 171);
@@ -375,6 +398,17 @@ body,
 
 .todo-item {
     font-size: 12px;
+   
+}
+
+.task-datetime {
+    background-color: #f0f0f0; /* Grey background */
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
+    white-space: nowrap; /* Prevent wrapping */
 }
 
 .fa-trash, 
@@ -438,8 +472,6 @@ ul li{
 }
 
 ul li:hover {
-    background: ;
-    color: ;
     transition: 0.5s ease;
 }
 
@@ -454,15 +486,7 @@ ul li:hover {
     padding-bottom: 60px; /* Padding for the fixed form */
 }
 
-.todo-form-container{
-    height: 36px;
-    width: 900px;
-    display: flex;
-    background-color: white;
-    align-items: center; 
-    border-radius: 5px;
-    margin-bottom: 4px;
-}
+
 
 .todo-form-input{
     transform: scale(1.2); 
@@ -475,8 +499,12 @@ ul li:hover {
     display: inline-block;
     transition: height 0.9s ease, padding 0.9s ease;
     width: 500px;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .dropdown.off{
+    height: 40px;
     width: auto;
     background-color: #eeeeee;
     overflow-y: auto;
@@ -485,6 +513,11 @@ ul li:hover {
 .dropdown.off .dropdown-side-menu{
     display: none;
 }
+
+.dropdown .on.dropdown-toggle:hover {
+    opacity: 0.75;
+    transition: 0.4s ease-in; 
+}
 .dropdown .on.dropdown-toggle{
     background: black;
     color: white;
@@ -492,6 +525,9 @@ ul li:hover {
     padding: 0.5rem;
     border-radius: 5px;
     cursor: pointer;
+    padding: 10px 200px;
+    border-radius: 5rem;
+    transition: 0.3 ease-in-out;
 }
 .dropdown-side-menu{
     background-color: white;
@@ -629,3 +665,15 @@ input[type="date"]:focus {
     border-color: #6200ea;
     box-shadow: 0 0 5px rgba(98, 0, 234, 0.5);
 }
+
+#newListForm {
+    position: fixed;
+    top: 90%; 
+    left: 34px;
+    z-index: 1500; 
+    background-color: white; 
+    padding: 0px;
+    border: 1px solid #ccc; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
