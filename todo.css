@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -7,8 +9,9 @@
 body{
     background-color:#eeeeee;
     color: white;
-    font-family:'Courier New', Courier, monospace;
+    font-family: "Outfit", sans-serif;
     min-height: 100vh;
+    font-weight: 400px;
 }
 main{
     margin-left: -80px;
@@ -23,11 +26,16 @@ main{
     
 }
 
+#parentDiv h3{
+    font-weight: 200;
+}
+
 .title{
     margin-top: 20px;
     margin-left: 300px;
     color: black;
-    font-size: 36px;
+    font-size: 32px;
+    font-weight: 500;
 }
 .title input{
     appearance: none;
@@ -36,15 +44,15 @@ main{
     background: none;
     cursor: initial;
     font-size: 36px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
     width: auto;
     min-width: 1ch;
 }
 
 h3 p{
     margin-left: 300px;
-    padding-bottom: 100px;
+    
     color: black;
 }
 
@@ -55,8 +63,9 @@ h3 p{
 
 .side-header-text{
     padding-top: 16px;
-    padding-left: 70px;
+    padding-left: 30px;
     font-size: 24px;
+    font-weight: 500;
     color: black;
 }
 
@@ -105,9 +114,9 @@ h3 p{
     display: flex;
     align-items: center;
     width: 15rem;
-    
     cursor: pointer;
     padding: .5rem;
+    border-radius: 5%;
 }
 .menu-item-content{
     display: flex;
@@ -126,17 +135,26 @@ h3 p{
     font-size: 20px;
 }
 
+#plus{
+    font-size: 36px;
+    font-weight: 300;
+}
+
 .menu-input{
     transform: scale(1.5); 
     margin-left: 25px; 
-    margin-right: 9px;
+    margin-right: 0px;
+    position: relative;
 }
 
 .menu-item-text{
+    letter-spacing: 0px;
+    font-size: 15px;
     color: black;
     border: none;
     background-color: white;
     transition: 0.5s ease;
+    font-weight: 540;
 }
 
 .sidebar .toggle.arrow{
@@ -165,9 +183,6 @@ h3 p{
     margin-top: 20px;
     transform: translateY(-50%) rotate(180deg);
 }
-.menu-item:hover .menu-item-content{
-    background-color: #cecccc; 
-}
 
 .menu-item .menu-item-text{
     background-color: transparent;
@@ -180,7 +195,7 @@ h3 p{
 }
 
 .menu-item:hover{
-    background-color: #cecccc; 
+    background-color: #e4e2e2; 
 }
 
 .sidebar .menu-bar{
@@ -188,6 +203,71 @@ h3 p{
     flex-direction: column;
     justify-content: space-between;
 }
+
+/* Container Styling for Date and Menu Section */
+.date-menu-container {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-end; 
+    gap: 10px; 
+    margin: 20px 0; 
+    padding: 10px; 
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+    width: 10.5vw; 
+    margin-left: auto; 
+}
+
+/* Date Button Styling */
+.date-button {
+    display: flex;
+    align-items: center; 
+    background-color: #ffffff; 
+    border: none;
+    padding: 10px 15px; 
+    border-radius: 10px;
+    font-size: 16px; 
+    color: #333; 
+    cursor: pointer; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease; 
+}
+
+.date-button i {
+    margin-right: 10px; /* Spacing between icon and text */
+    color: #666; /* Icon color */
+}
+
+/* Date Button Hover Effect */
+.date-button:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
+}
+
+/* Menu Button Styling */
+.menu-button {
+    display: flex;
+    align-items: center; /* Center align icon */
+    justify-content: center; /* Center align icon */
+    background-color: #ffffff; /* White background */
+    border: none; /* Remove default border */
+    padding: 10px; /* Padding for size */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.menu-button i {
+    font-size: 20px; /* Icon size */
+    color: #333; /* Icon color */
+}
+
+/* Menu Button Hover Effect */
+.menu-button:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
+}
+
 
  /*
  #taskForm button {
@@ -244,11 +324,10 @@ body,
 }
 .add-todo{
     color:white;
-    background: blue;
+    background: rgb(0, 60, 255);
     cursor: pointer;
     transition: all 0.3 ease;
-    margin-left: 0.5rem;
-    padding: 10px 180px;
+    padding: 14px 200px;
 }
 .add-todo:hover {
     color: white;
@@ -268,15 +347,23 @@ body,
     color:white;
     background:black;
     cursor: pointer;
-    transition: all 0.3 ease;
     margin-left: 0.5rem;
-    padding: 10px 200px;
+    padding: 14px 205px;
+    border: none;
     border-radius: 5rem;
     transition: 0.3 ease-in-out;
+    font-size: 16px;
+    align-items: center;
+    justify-content: start;
+}
+
+.add-task-button span{
+   margin-left: 0.5rem;
+   font-size: 16px;
 }
 .add-task-button:hover {
     color: rgb(211, 206, 206);
-    background: grey;
+    opacity: 0.75;
     transition: 0.4s ease-in; 
 }
 .form-add-task-button{
@@ -285,7 +372,7 @@ body,
     display: none;
     justify-content: center;
     padding: 1rem;
-    padding-left: 30%;
+    padding-left: 20%;
     min-height: 20vh;
     display: flex;
     justify-content: center;
@@ -293,17 +380,16 @@ body,
     overflow: hidden;
 }
 .add-time-button{
-    color:blue;
-    background:rgb(130, 217, 246);
+    color:rgb(0, 60, 255);;
+    background:rgb(219, 240, 247);
     cursor: pointer;
-    transition: all 0.3 ease;
-    margin-left: 0.5rem;
-    padding: 10px 200px;
+    
+    padding: 14px 216px;
     border-radius: 5rem;
-    transition: 0.3 ease-in-out;
+    border: none;
 }
 .add-time-button:hover {
-    opacity: 0.75;
+    background-color:rgb(158, 225, 247);
     transition: 0.4s ease-in; 
 }
 
@@ -321,24 +407,25 @@ body,
     border: 2px solid #ddd;
     padding: 20px;
     border-radius: 8px;
+    justify-content: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
     justify-content: center;
     align-items: center;
-    left: 38.5%;
+    left: 30%;
     bottom: 12%;
 }
 
 
 .todo-list {
-    min-width: 40%;
+    min-width: 50%;
     list-style: none;
     
 }
 
 .todo {
     height: 2rem;
-    margin: 0.5rem;
+    margin: 1rem;
     padding-left: 0.5rem;
     background: white;
     color: black;
@@ -353,13 +440,13 @@ body,
 }
 
 .todo-form-container{
-    height: 36px;
-    width: 900px;
+    height: 44px;
+    width: 57vw;
     display: flex;
     background-color: white;
     align-items: center; 
     border-radius: 5px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .todo li {
@@ -368,11 +455,12 @@ body,
 
 .deleted, 
 .created {
-    color: black;
+    color: #616060;
     padding: 4px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 16px;
     border: none;
+    border-radius: 20%;
 }
 
 .created {
@@ -380,24 +468,24 @@ body,
 }
 
 .deleted {
-    background: rgb(171, 171, 171);
+    background: rgb(241, 240, 240);
     justify-content: right;
-
-    margin-left:  320px;
+    margin-left:  10px;
 }
 .more{
-    background: rgb(171, 171, 171);
+    background: rgb(241, 240, 240);
     justify-content: right;
     margin-left: 10px;
-    color: black;
+    color: #616060;
     padding: 4px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 16px;
     border: none;
+    border-radius: 20%;
 }
 
 .todo-item {
-    font-size: 12px;
+    font-size: 16px;
    
 }
 
@@ -488,11 +576,56 @@ ul li:hover {
 
 
 
-.todo-form-input{
-    transform: scale(1.2); 
-    margin-left: 10px; 
-    border-radius: 30%; /* Makes the checkbox circular */
+.todo-form-input {
+    transform: scale(1.8); 
+    margin-left: 16px;
+    border-radius: 35%;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+
+.todo-form-input:checked {
+    background-color: black;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid black; 
+}
+
+.todo-form-input:checked::before {
+    content: "✔"; /* Unicode checkmark */
+    font-size: 14px;
+    color: white; /* White checkmark */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    height: 100%;
+}
+
+.todo-form-input:checked::before {
+    content: "✔"; 
+    font-size: 14px;
+    color: white;
+    width: auto;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+
+
+
+
+
 
 .dropdown {
     position: relative;
@@ -500,15 +633,21 @@ ul li:hover {
     transition: height 0.9s ease, padding 0.9s ease;
     width: 500px;
     height: 300px;
+    scrollbar-width: none;
+    overflow: hidden;
+}
+.dropdown::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+.dropdown:hover{
     overflow-y: auto;
-    overflow-x: hidden;
 }
 .dropdown.off{
-    height: 40px;
+    height: 60px;
     width: auto;
-    background-color: #eeeeee;
+    background-color: white;
     overflow-y: auto;
-    transition: width 0.9s ease, padding 0.9s ease;
+    transition: 0.3 ease-in-out;
 }
 .dropdown.off .dropdown-side-menu{
     display: none;
@@ -519,15 +658,18 @@ ul li:hover {
     transition: 0.4s ease-in; 
 }
 .dropdown .on.dropdown-toggle{
-    background: black;
-    color: white;
+    background: white;
+    color: black;
     border: none;
     padding: 0.5rem;
     border-radius: 5px;
     cursor: pointer;
-    padding: 10px 200px;
-    border-radius: 5rem;
+    padding: 10px 100px;
+    border-radius: 1rem;
+    border: 1px solid black;
     transition: 0.3 ease-in-out;
+    display: flex;
+    align-items: center;
 }
 .dropdown-side-menu{
     background-color: white;
@@ -606,6 +748,8 @@ ul li:hover {
 
 
 #completed1 {
+    margin-left: 23px;
+    margin-right: 22px;
     width: 12px;
     height: 12px;
     border-radius: 30%;
@@ -616,6 +760,8 @@ ul li:hover {
 }
 
 #personal1 {
+    margin-left: 23px;
+    margin-right: 22px;
     width: 12px;
     height: 12px;
     border-radius: 30%;
@@ -626,6 +772,8 @@ ul li:hover {
 }
 
 #work1 {
+    margin-left: 23px;
+    margin-right: 22px;
     width: 12px;
     height: 12px;
     border-radius: 30%;
@@ -635,20 +783,110 @@ ul li:hover {
     outline: none;
 }
 
-#dateContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.left-content{
+    margin-left: -100%;
+    display: flex; /* Use Flexbox */
+    align-items: center; /* Align items vertically */
+    gap: 0px; /* Spacing between checkbox and label */
+    margin-right: auto; /* Push content to the far left */
 }
+
+.left-content span{
+    width: 60px;
+}
+
+
+#noList1 {
+    width: 12px;
+    height: 12px;
+    border-radius: 30%;
+    background-color: white;
+    border: 1px solid black; /* This adds a red border around the checkbox */
+    -webkit-appearance: none; /* Remove the default appearance */
+    appearance: none; /* For browsers that support the appearance property */
+    outline: none; 
+    margin-top: 5px;
+}
+
+
+.dropdown .arrow{
+    margin-left: 175%; /* Push the arrow to the far right */
+}
+#dateContainer {  
+    margin-top: 10px;
+    padding: 0px;
+    border-radius: 8px; 
+}
+
 
 #currentDate {
     font-size: 1.2em;
     color: #333;
     margin-bottom: 10px;
+}
+
+.note-button-container {
+    display: flex;
+    justify-content: center; /* Center the button */
+    margin-top: 7.5px; /* Add some spacing from the date container */
+}
+.note-button {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: white; /* White background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+.note-button i {
+    font-size: 18px; /* Adjust icon size */
+    color: #707070; /* Icon color */
+}
+.note-button:hover {
+    background-color: #f0f0f0; /* Background color on hover */
+}
+
+
+.CreateNewCheckbox{
+    background-color: #eeeeee;
+    cursor: pointer;
+    border-radius: 1rem;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 5px;
+    width: 65vh;
+}
+.CreateNewCheckbox:hover{
+    background-color: #eeeeee;
+}
+.CreateNewCheckbox #noList1{
+    margin-bottom: -4px;
+    border: 1px solid #6b6b6b;
+    margin-left: 5px;
+}
+.checkboxes{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.CreateNewCheckbox .todo-input{
+    background-color: #eeeeee;
+    outline: none; 
+    border-color: #eeeeee;
+    width: 29.3vw;
+}
+.CreateNewCheckbox #taskForm{
+    
+}
+#taskTitle{
+    
 }
 
 input[type="date"] {
@@ -668,12 +906,200 @@ input[type="date"]:focus {
 
 #newListForm {
     position: fixed;
-    top: 90%; 
-    left: 34px;
+    top: 85%; 
+    left: 20px;
     z-index: 1500; 
     background-color: white; 
     padding: 0px;
     border: 1px solid #ccc; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 16.5vw;
 }
 
+#newListInput,
+#newListEmojiInput {
+    width: 100%; /* Full width */
+    padding: 5px; /* Add padding */
+    margin: 0px 0; /* Margin for spacing */
+    border: none; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Comfortable font size */
+    box-sizing: border-box; /* Include padding and border in element's width and height */
+    background-color: #f9f9f9; /* Light background color */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Hover effect */
+#newListInput:hover,
+#newListEmojiInput:hover {
+    border-color: #bbb; /* Slightly darker border on hover */
+}
+
+/* Focus effect */
+#newListInput:focus,
+#newListEmojiInput:focus {
+    outline: none; /* Remove default outline */
+    border-color: #333; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(98, 0, 234, 0.5); /* Add shadow effect */
+}
+
+#addNewListBtn {
+    width: 100%; /* Full width */
+    padding: 5px; /* Comfortable padding */
+    margin-top: 10px; /* Spacing above the button */
+    background-color: #007bff; /* Primary blue color */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 12px; /* Button font size */
+    font-weight: 500; /* Slightly bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Hover effect */
+#addNewListBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+/* Focus effect */
+#addNewListBtn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Outline shadow */
+}
+
+/* Disabled state */
+#addNewListBtn:disabled {
+    background-color: #cccccc; /* Light grey background */
+    cursor: not-allowed; /* Not-allowed cursor */
+    box-shadow: none; /* Remove shadow */
+}
+
+
+/* Base Styles (Already Provided in Your Existing Code) */
+/* Styles have already been defined in your CSS snippet above */
+
+/* Small Devices (Phones, Less than 600px) */
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px; /* Reduce base font size */
+    }
+
+    .sidebar {
+        width: 60px; /* Minimize sidebar width */
+        padding: 0; /* Remove padding */
+    }
+
+    .sidebar .menu-item {
+        width: 100%; /* Full width for menu items */
+        justify-content: center; /* Center align */
+    }
+
+    .todo-form-container {
+        width: 90vw; /* Adapt todo form width */
+    }
+
+    .todo-input, .add-todo {
+        width: 90%; /* Adjust input and button width */
+        padding: 0.5rem; /* Adjust padding */
+        margin: 10px auto; /* Center inputs */
+    }
+
+    .dropdown {
+        width: 90%; /* Adjust dropdown width */
+        height: auto; /* Adjust dropdown height */
+    }
+
+    .add-task-button {
+        width: 100%; /* Full width button */
+        padding: 10px; /* Smaller padding */
+    }
+}
+
+/* Medium Devices (Tablets, 600px to 992px) */
+@media screen and (min-width: 600px) and (max-width: 992px) {
+    .sidebar {
+        width: 100px; /* Wider sidebar */
+    }
+
+    .sidebar .menu-item {
+        width: 80%; /* Adjust width */
+    }
+
+    .todo-form-container {
+        width: 70vw; /* Wider todo form */
+    }
+
+    .add-todo {
+        width: 80%; /* Adjust button width */
+    }
+
+    .dropdown {
+        width: 80%; /* Dropdown width for medium screens */
+    }
+
+    .task-datetime {
+        font-size: 12px; /* Smaller font for datetime */
+    }
+}
+
+/* Large Devices (Desktops, 992px and Up) */
+@media screen and (max-width: 992px) {
+    .sidebar {
+        width: 250px; /* Original sidebar width */
+    }
+
+    .todo-form-container {
+        width: 60vw; /* Wider todo form */
+    }
+
+    .add-todo, .add-task-button {
+        width: 300px; /* Set fixed width */
+        margin: 10px 0; /* Add margin */
+    }
+
+    .dropdown {
+        width: 500px; /* Original dropdown width */
+        height: auto; /* Adjust height */
+    }
+
+    .task-datetime {
+        font-size: 14px; /* Original size */
+    }
+}
+
+
+
+
+.task-time-container {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7; 
+    border-radius: 8px; 
+    padding: 8px 15px; 
+    margin-top: 8px; 
+    color: #888; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); 
+    width: max-content;
+}
+
+/* Time Range Styling */
+.time-range {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+    font-size: 14px; 
+    color: #888; 
+}
+
+.time-range i {
+    font-size: 14px; 
+    color: #888; 
+}
+
+.no-list-calendar{
+    display: flex;
+    gap: 10px;
+}

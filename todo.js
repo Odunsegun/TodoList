@@ -35,55 +35,99 @@ parentDiv.insertBefore(goodDay, personal_name.nextElementSibling);
 
 
 document.addEventListener("DOMContentLoaded", () => {
-   
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdownMenu = document.querySelector(".dropdown-menu-list");
+    const addTimeBtn = document.getElementById('addTimeBtn');
+    const timeForm = document.getElementById('timeForm');
 
-    const menuItems = document.querySelectorAll(".sidebar .menu-item");
-    menuItems.forEach(item => {
-        const menuItemText = item.querySelector('.menu-item-text').textContent;
-        const menuItemEmoji = item.querySelector('.emoji') ? item.querySelector('.emoji').textContent : '';
-        const listItem = document.createElement('li');
-        listItem.textContent = `${menuItemEmoji} ${menuItemText}`;
-        listItem.dataset.emoji = menuItemEmoji;
-        listItem.classList.add('dropdown-item');
-
-        listItem.addEventListener('click', () => {
-            selectedCategory = {
-                emoji: listItem.dataset.emoji,
-                text: listItem.dataset.text
-            };
-            selectListButton.textContent = `Selected: ${selectedCategory.emoji} ${selectedCategory.text}`;
-        });
-        
-        dropdownMenu.appendChild(listItem);
+    dropdownToggle.addEventListener("click", () => {
+        const dropdownContent = document.querySelector(".dropdown-content");
+        dropdownContent.classList.toggle("on");
     });
+
+    addTimeBtn.addEventListener('click', () => {
+        timeForm.style.display = timeForm.style.display === 'flex' ? 'none' : 'flex';
+        addTimeBtn.textContent = timeForm.style.display === 'flex' ? 'No Time' : 'Set Time';
+    });
+    const menuItems = document.querySelectorAll(".sidebar .menu-item");
+
+    menuItems.forEach(item => {
+    const menuItemText = item.querySelector('.menu-item-text').textContent;
+    const menuItemEmoji = item.querySelector('.emoji') ? item.querySelector('.emoji').textContent : '';
+    const listItem = document.createElement('li');
+    listItem.textContent = `${menuItemEmoji} ${menuItemText}`;
+    listItem.dataset.emoji = menuItemEmoji;
+    listItem.classList.add('dropdown-item');
+    
+    // Check if there is a checkbox for this menu item
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    
+    if (checkbox) {
+        const checkboxClone = checkbox.cloneNode(true); // Clone the checkbox
+        checkboxClone.disabled = false; // Enable the checkbox for dropdown
+        
+        // Append the checkbox to the dropdown list item
+        listItem.prepend(checkboxClone);
+        
+        // Apply styles based on the checkbox's ID
+        if (checkbox.id === 'completed1') {
+            checkboxClone.style.border = '1px solid red';
+            checkboxClone.style.height = '2px';
+            checkboxClone.style.width = '2px';
+            checkboxClone.style.padding = '6px';
+            checkboxClone.style.marginBottom = '0px';
+            checkboxClone.style.marginRight = '6px';
+            checkboxClone.style.marginLeft = '4px';
+        } else if (checkbox.id === 'personal1') {
+            checkboxClone.style.border = '1px solid blue';
+            checkboxClone.style.padding = '6px';
+            checkboxClone.style.marginBottom = '0px';
+            checkboxClone.style.marginRight = '6px';
+            checkboxClone.style.marginLeft = '4px';
+
+        } else if (checkbox.id === 'work1') {
+            checkboxClone.style.border = '1px solid green';
+            checkboxClone.style.padding = '6px';
+            checkboxClone.style.marginBottom = '0px';
+            checkboxClone.style.marginRight = '6px';
+            checkboxClone.style.marginLeft = '4px';
+        }
+    }
+
+    listItem.addEventListener('click', () => {
+        selectedCategory = {
+            emoji: listItem.dataset.emoji,
+            text: listItem.textContent
+        };
+        selectListButton.textContent = `Selected:  ${selectedCategory.text}`;
+    });
+
+    dropdownMenu.appendChild(listItem);
+
+
+    
+});
+
 
     const taskForm = document.getElementById('taskForm');
     const addTaskBtn = document.getElementById('addTaskBtn');
-    const addTimeBtn = document.getElementById('addTimeBtn');
-    const timeForm = document.getElementById('timeForm');
-    
-
-    addTimeBtn.addEventListener('click', () => {
-        if (timeForm.style.display == 'none') {
-            timeForm.style.display = 'flex';
-            addTimeBtn.textContent = 'No Time';
-        } else{
-            timeForm.style.display = 'none';
-            addTimeBtn.textContent = 'Set Time';
-        }
-    })
+     
+    taskForm.style.display = 'none';
 
     // Add event listener for "Add Task" button to toggle visibility
     addTaskBtn.addEventListener('click', () => {
         if (taskForm.style.display === 'none') {
             taskForm.style.display = 'flex';  // Show the form
-            addTaskBtn.textContent = 'Hide Task'; // Change button text
+            addTaskBtn.textContent = '+ Create new task'; // Change button text
         } else {
             taskForm.style.display = 'none';  // Hide the form
-            addTaskBtn.textContent = 'Add Task';  // Revert button text
+            addTaskBtn.textContent = '+ Create new task';  // Revert button text
         }
+    });
+
+    saveChangesBtn.addEventListener('click', () => {
+        taskForm.style.display = 'none';  // Hide the form
+        addTaskBtn.textContent = '+ Create new task';  // Revert button text
     });
     
     // save usename
@@ -128,42 +172,49 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add new list to sidebar when "Add List" button is clicked
     addNewListBtn.addEventListener("click", () => {
         const newListName = newListInput.value.trim();
+        const newListEmoji = newListEmojiInput.value.trim();
         if (newListName) {
             // Create new list item
             const newListItem = document.createElement("li");
             newListItem.classList.add("menu-item");
-
+    
             const newContentDiv = document.createElement("div");
             newContentDiv.classList.add("menu-item-content");
-
-            const newEmojiSpan = document.createElement("span");
-            newEmojiSpan.classList.add("emoji");
-            newEmojiSpan.textContent = "🆕"; // Example emoji for the new list
-
+    
+            // Append emoji only if the user has provided one
+            if (newListEmoji) {
+                const newEmojiSpan = document.createElement("span");
+                newEmojiSpan.classList.add("emoji");
+                newEmojiSpan.textContent = newListEmoji; // Use user-provided emoji
+                newContentDiv.appendChild(newEmojiSpan); // Append emoji span correctly
+            }
+    
             const newListBtn = document.createElement("button");
             newListBtn.classList.add("menu-item-text");
             newListBtn.textContent = newListName;
 
-            // Append new elements
-            newContentDiv.appendChild(newEmojiSpan);
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.classList.add("delete-list-btn");
+            deleteButton.addEventListener("click", () => {
+            newListItem.remove(); // Remove the list item from sidebar
+            updateDropdown(); // Update dropdown after deletion
+        });
+    
+            // Append the list button (text)
             newContentDiv.appendChild(newListBtn);
+            newContentDiv.appendChild(deleteButton);
             newListItem.appendChild(newContentDiv);
             menuList.appendChild(newListItem); // Appends to the sidebar
-
-            // Clear the input field and hide the form
+    
+            // Clear the input fields and hide the form
             newListInput.value = "";
+            newListEmojiInput.value = "";
             newListForm.style.display = "none";
         }
-    });
-    
-
+    });    
     loadTodos();
 });
-
-
-
-
-
 
 function updateCounter(selectedCategory, increment = true) {
     const counters = JSON.parse(localStorage.getItem('counters')) || {};
@@ -193,6 +244,70 @@ function updateCounter(selectedCategory, increment = true) {
 
 }
 
+function updateDropdown() {
+    const dropdownMenu = document.querySelector(".dropdown-menu-list");
+    dropdownMenu.innerHTML = ""; // Clear the existing dropdown items
+
+    // Get all current lists from the sidebar
+    const menuItems = document.querySelectorAll(".menu-item");
+
+    menuItems.forEach(item => {
+        const menuItemText = item.querySelector('.menu-item-text').textContent;
+        const menuItemEmoji = item.querySelector('.emoji') ? item.querySelector('.emoji').textContent : '';
+        const listItem = document.createElement('li');
+        listItem.textContent = `${menuItemEmoji} ${menuItemText}`;
+        listItem.dataset.emoji = menuItemEmoji;
+        listItem.classList.add('dropdown-item');
+        
+        // Check if there is a checkbox for this menu item
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        
+        if (checkbox) {
+            const checkboxClone = checkbox.cloneNode(true); // Clone the checkbox
+            checkboxClone.disabled = false; // Enable the checkbox for dropdown
+            
+            // Append the checkbox to the dropdown list item
+            listItem.prepend(checkboxClone);
+            
+            // Apply styles based on the checkbox's ID
+            if (checkbox.id === 'completed1') {
+                checkboxClone.style.border = '1px solid red';
+                checkboxClone.style.height = '2px';
+                checkboxClone.style.width = '2px';
+                checkboxClone.style.padding = '6px';
+                checkboxClone.style.marginBottom = '0px';
+                checkboxClone.style.marginRight = '6px';
+                checkboxClone.style.marginLeft = '4px';
+            } else if (checkbox.id === 'personal1') {
+                checkboxClone.style.border = '1px solid blue';
+                checkboxClone.style.padding = '6px';
+                checkboxClone.style.marginBottom = '0px';
+                checkboxClone.style.marginRight = '6px';
+                checkboxClone.style.marginLeft = '4px';
+
+            } else if (checkbox.id === 'work1') {
+                checkboxClone.style.border = '1px solid green';
+                checkboxClone.style.padding = '6px';
+                checkboxClone.style.marginBottom = '0px';
+                checkboxClone.style.marginRight = '6px';
+                checkboxClone.style.marginLeft = '4px';
+            }
+        }
+
+        listItem.addEventListener('click', () => {
+            selectedCategory = {
+                emoji: listItem.dataset.emoji,
+                text: menuItemText
+            };
+            selectListButton.textContent = `Selected: ${selectedCategory.emoji} ${selectedCategory.text}`;
+        });
+
+        dropdownMenu.appendChild(listItem);
+    });
+}
+
+updateDropdown();
+
 function addTodo(event) {
     event.preventDefault();
 
@@ -206,23 +321,35 @@ function addTodo(event) {
 
     const todoForm = document.createElement("form");
     todoForm.classList.add("todo-form-container");
+
     const todoCheck = document.createElement("input");
     todoCheck.type = "checkbox";
     todoCheck.classList.add("todo-form-input");
 
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
+
     const todoItem = document.createElement("li");
-
-    const dateTimeContainer = document.createElement("span");
+   /* const dateTimeContainer = document.createElement("span");
     dateTimeContainer.classList.add("task-datetime");
-    dateTimeContainer.innerText = `Date - ${taskDate} ${taskTimeStart} - ${taskTimeEnd}`;
-
+    dateTimeContainer.innerText = `${categoryEmoji} ${taskTitle}`;
+*/
     todoItem.innerText = `${categoryEmoji} ${taskTitle}`;
     todoItem.classList.add("todo-item");
 
+
+    const timeContainer = document.createElement("div");
+    timeContainer.classList.add("task-time-container");
+
+    // Add Time Range
+    const timeRange = document.createElement("span");
+    timeRange.classList.add("time-range");
+    timeRange.innerHTML = `<i class='bx bx-time'></i> ${taskTimeStart} - ${taskTimeEnd}`;
+
+    timeContainer.appendChild(timeRange);
+
     todoDiv.appendChild(todoItem);
-    todoDiv.appendChild(dateTimeContainer); // Append the date and time container
+    todoDiv.appendChild(timeContainer); // Append the date and time container
 
 
     const deleteButton = document.createElement("button");
@@ -247,7 +374,7 @@ function addTodo(event) {
     }
 
     document.getElementById('taskTitle').value = "";
-    document.getElementById('taskDate').value = "";
+   // document.getElementById('taskDate').value = "";
     document.getElementById('taskTimeStart').value = "";
     document.getElementById('taskTimeEnd').value = "";
 
@@ -334,7 +461,6 @@ function loadTodos() {
         const edit = document.createElement("button");
     });
 }
-
 
 function removeTodoFromLocalStorage(todoForm) {
     let todos = JSON.parse(localStorage.getItem("todos")) || [];
