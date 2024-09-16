@@ -74,12 +74,16 @@ h3 p{
     top: 1%;
     left: 2%;
     height: 98%;
-    width: 250px;
+    width: 300px;
+    max-width: 300px;
     padding: 0px 0px;
     background: white;
     border-radius: 5px;
+    z-index: 15;
     transition: width 0.9s ease, padding 0.9s ease;
     box-sizing: border-box;
+    display: flex; /* Display flex to make the sidebar content flexible */
+    flex-direction: column; /* Align items in a column */
 }
 .sidebar.close{
     width: auto;
@@ -96,6 +100,7 @@ h3 p{
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-width: none;
 }
 
 .sidebar.close .side-menu,
@@ -147,14 +152,21 @@ h3 p{
     position: relative;
 }
 
+label .menu-item-text{
+    width: 129px;
+}
+
 .menu-item-text{
     letter-spacing: 0px;
     font-size: 15px;
+    width: 150px;
     color: black;
     border: none;
     background-color: white;
     transition: 0.5s ease;
     font-weight: 540;
+    text-align: left;
+    justify-content: flex-start;
 }
 
 .sidebar .toggle.arrow{
@@ -436,7 +448,8 @@ body,
     transition: 0.5s;
     padding-right: .5rem;
     max-width: 860px;
-    min-width: 860px;
+    width: 860px;
+    
 }
 
 .todo-form-container{
@@ -486,7 +499,50 @@ body,
 
 .todo-item {
     font-size: 16px;
-   
+}
+
+.todo-item input{
+    
+    
+}
+
+ .todo-item input[type="checkbox"]#personal1 {
+    margin-left: 2px;
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 30%; /* Rounded corners */
+    border: 1px solid blue; /* Blue border */
+    -webkit-appearance: none; /* Remove default appearance */
+    appearance: none; /* Remove default appearance */
+    outline: none; /* Remove outline */
+}
+
+/* Style for the "Work" checkbox */
+.todo-item input[type="checkbox"]#work1 {
+    margin-left: 2px;
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 30%; /* Rounded corners */
+    border: 1px solid green; /* Green border */
+    -webkit-appearance: none; /* Remove default appearance */
+    appearance: none; /* Remove default appearance */
+    outline: none; /* Remove outline */
+}
+
+
+
+.todo-category-checkbox{
+    margin-left: 500px;
+    margin-right: 22px;
+    width: 14px;
+    height: 14px;
+    border-radius: 30%;
+    border: 1px solid green;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
 }
 
 .task-datetime {
@@ -571,6 +627,8 @@ ul li:hover {
     align-items: center;
     flex-direction: column;
     overflow-y: auto; 
+    scrollbar-width: none;
+    overflow-x: hidden;
     padding-bottom: 60px; /* Padding for the fixed form */
 }
 
@@ -631,7 +689,7 @@ ul li:hover {
     position: relative;
     display: inline-block;
     transition: height 0.9s ease, padding 0.9s ease;
-    width: 500px;
+    width: auto;
     height: 300px;
     scrollbar-width: none;
     overflow: hidden;
@@ -687,7 +745,16 @@ ul li:hover {
 }
 .dropdown-menu li {
     padding: 0.5rem;
-
+    color: black;
+    width: 500px;
+    height: 3.2rem;
+    cursor: pointer;
+    padding: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
     cursor: pointer;
 }
 .dropdown-menu li:hover {
@@ -748,8 +815,8 @@ ul li:hover {
 
 
 #completed1 {
-    margin-left: 23px;
     margin-right: 22px;
+    margin-left: 23px;
     width: 12px;
     height: 12px;
     border-radius: 30%;
@@ -760,8 +827,8 @@ ul li:hover {
 }
 
 #personal1 {
-    margin-left: 23px;
     margin-right: 22px;
+    margin-left: 23px;  
     width: 12px;
     height: 12px;
     border-radius: 30%;
@@ -982,110 +1049,7 @@ input[type="date"]:focus {
 /* Styles have already been defined in your CSS snippet above */
 
 /* Small Devices (Phones, Less than 600px) */
-@media screen and (max-width: 600px) {
-    body {
-        font-size: 14px; /* Reduce base font size */
-    }
 
-    .sidebar {
-        width: 60px; /* Minimize sidebar width */
-        padding: 0; /* Remove padding */
-    }
-
-    .sidebar .menu-item {
-        width: 100%; /* Full width for menu items */
-        justify-content: center; /* Center align */
-    }
-
-    .todo-form-container {
-        width: 90vw; /* Adapt todo form width */
-    }
-
-    .todo-input, .add-todo {
-        width: 90%; /* Adjust input and button width */
-        padding: 0.5rem; /* Adjust padding */
-        margin: 10px auto; /* Center inputs */
-    }
-
-    .dropdown {
-        width: 90%; /* Adjust dropdown width */
-        height: auto; /* Adjust dropdown height */
-    }
-
-    .add-task-button {
-        width: 100%; /* Full width button */
-        padding: 10px; /* Smaller padding */
-    }
-}
-
-/* Medium Devices (Tablets, 600px to 992px) */
-@media screen and (min-width: 600px) and (max-width: 992px) {
-    .sidebar {
-        width: 100px; /* Wider sidebar */
-    }
-
-    .sidebar .menu-item {
-        width: 80%; /* Adjust width */
-    }
-
-    .todo-form-container {
-        width: 70vw; /* Wider todo form */
-    }
-
-    .add-todo {
-        width: 80%; /* Adjust button width */
-    }
-
-    .dropdown {
-        width: 80%; /* Dropdown width for medium screens */
-    }
-
-    .task-datetime {
-        font-size: 12px; /* Smaller font for datetime */
-    }
-}
-
-/* Large Devices (Desktops, 992px and Up) */
-@media screen and (max-width: 992px) {
-    .sidebar {
-        width: 250px; /* Original sidebar width */
-    }
-
-    .todo-form-container {
-        width: 60vw; /* Wider todo form */
-    }
-
-    .add-todo, .add-task-button {
-        width: 300px; /* Set fixed width */
-        margin: 10px 0; /* Add margin */
-    }
-
-    .dropdown {
-        width: 500px; /* Original dropdown width */
-        height: auto; /* Adjust height */
-    }
-
-    .task-datetime {
-        font-size: 14px; /* Original size */
-    }
-}
-
-
-
-
-.task-time-container {
-    display: flex;
-    align-items: center;
-    background-color: #f7f7f7; 
-    border-radius: 8px; 
-    padding: 8px 15px; 
-    margin-top: 8px; 
-    color: #888; 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); 
-    width: max-content;
-}
-
-/* Time Range Styling */
 .time-range {
     display: flex;
     align-items: center; 
@@ -1099,7 +1063,882 @@ input[type="date"]:focus {
     color: #888; 
 }
 
+todo-edit-input {
+    width: 100%;
+    font-size: 16px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 1350px){
+    .todo-container {
+        max-height: 60vh;
+        max-width: 80vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: none;
+        overflow-x: hidden;
+        padding-bottom: 60px;
+        overflow-x: auto;
+    }
+    .menu-button{
+        display: none;
+    }
+    .date-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        margin: 20px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 10.5vw;
+        margin-left: auto;
+    }
+    .todo {
+        height: 2rem;
+        margin: 1rem;
+        padding-left: 0.5rem;
+        background: white;
+        color: black;
+        font-size: 1rem;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        transition: 0.5s;
+        padding-right: .5rem;
+        width: 80vw;
+        
+    }
+}
+
+@media screen and (max-width: 1250px){
+    .menu-button{
+        display: none;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    .title input {
+        font-size: 24px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+    }
+    .todo-form-container {
+        align-items: center;
+        justify-content: center;
+    }
+    ul li {
+        color: black;
+        width: 25rem;
+        height: 3.2rem;
+        cursor: pointer;
+        padding: 0.75rem;
+        justify-self: center;
+    }
+    .todo-item {
+        font-size: 14px;
+    }
+    .todo-container {
+        max-height: 60vh;
+        max-width: 110vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: none;
+        overflow-x: hidden;
+        padding-bottom: 60px;
+        overflow-x: auto;
+    }
+    .todo {
+        height: 2rem;
+        margin: 1rem;
+        padding-left: 0.5rem;
+        background: white;
+        color: black;
+        font-size: 1rem;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        transition: 0.5s;
+        padding-right: .5rem;
+        width: 100vw;
+        
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 1%;
+        left: 2%;
+        height: 98%;
+        width: 300px;
+        max-width: 250px;
+        padding: 0px 0px;
+        background: white;
+        border-radius: 5px;
+        transition: width 0.9s ease, padding 0.9s ease;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 992px){
+
+    .CreateNewCheckbox {
+        background-color: #eeeeee;
+        cursor: pointer;
+        border-radius: 1rem;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 5px;
+        width: 54vw;
+    }
+    .dropdown.off {
+        height: 60px;
+        width: 30vw;
+        background-color: white;
+        overflow-y: auto;
+        transition: 0.3 ease-in-out;
+    }
+    .dropdown .on.dropdown-toggle {
+        background: white;
+        color: black;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 65px;
+        border-radius: 1rem;
+        border: 1px solid black;
+        transition: 0.3 ease-in-out;
+        display: flex;
+        align-items: center;
+    }
+    .dropdown .arrow {
+        margin-left: 120%;
+    }
+    .left-content {
+        margin-left: -70%;
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-right: auto;
+    }
+    .date-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        margin: 20px 0;
+        padding: 0px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 10.5vw;
+        margin-left: auto;
+    }
+    .title {
+        font-size: 24px;
+    }
+    .title input {
+        font-size: 24px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+    }
+    .todo-form-container {
+        align-items: center;
+        justify-content: center;
+    }
+    ul li {
+        width: 20rem;
+    }
+    .todo-item {
+        font-size: 14px;
+    }
+    .form-add-task-button {
+        position: fixed;
+        bottom: 0;
+        display: none;
+        justify-content: center;
+        padding: 1rem;
+        padding-left: 40%;
+        min-height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .add-task-button {
+        color: white;
+        background: black;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        padding: 14px 160px;
+        border: none;
+        border-radius: 5rem;
+        transition: 0.3 ease-in-out;
+        font-size: 12px;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .form-container {
+        background-color: white;
+        border: 2px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        justify-content: center;
+        align-items: center;
+        left: 35%;
+        bottom: 12%;
+    }
+
+    .add-todo {
+        padding: 14px 175px;
+    }
+
+    .add-time-button {
+        color: rgb(0, 60, 255);
+        background: rgb(219, 240, 247);
+        cursor: pointer;
+        padding: 14px 191px;
+
+    }
+   
+}
+
+@media screen and (max-width: 830px) {
+
+    .CreateNewCheckbox {
+        background-color: #eeeeee;
+        cursor: pointer;
+        border-radius: 1rem;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 5px;
+        width: 54vw;
+    }
+    .dropdown.off {
+        height: 60px;
+        width: 30vw;
+        background-color: white;
+        overflow-y: auto;
+        transition: 0.3 ease-in-out;
+    }
+    .dropdown .on.dropdown-toggle {
+        background: white;
+        color: black;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 65px;
+        border-radius: 1rem;
+        border: 1px solid black;
+        transition: 0.3 ease-in-out;
+        display: flex;
+        align-items: center;
+    }
+    .dropdown .arrow {
+        margin-left: 120%;
+    }
+    .left-content {
+        margin-left: -70%;
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-right: auto;
+    }
+    .add-time-button {
+        color: rgb(0, 60, 255);
+        background: rgb(219, 240, 247);
+        cursor: pointer;
+        padding: 14px 165px;
+        font-size: 12px;
+    }
+    .add-todo {
+        font-size: 12px;
+        padding: 14px 150px;
+    }
+    .form-container {
+        
+        left: 33%;
+        
+    }
+    .sidebar {
+        position: fixed;
+        top: 1%;
+        left: 2%;
+        height: 98%;
+        width: 200px;
+        max-width: 200px;
+        padding: 0px 0px;
+        background: white;
+        border-radius: 5px;
+        transition: width 0.9s ease, padding 0.9s ease;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-item-text {
+        letter-spacing: 0px;
+        font-size: 12px;
+        width: 100px;
+        color: black;
+        border: none;
+        background-color: white;
+        transition: 0.5s ease;
+        font-weight: 540;
+        text-align: left;
+        justify-content: flex-start;
+    }
+    label .menu-item-text {
+        width: 94px;
+    }
+    .menu-list{
+        margin-left: 25px;
+    }
+    .todo-form-input {
+        transform: scale(1.5);
+        margin-left: 16px;
+        border-radius: 35%;
+        -webkit-appearance: none;
+        appearance: none;
+        border: 1px solid #ccc;
+        background-color: white;
+        position: relative;
+        cursor: pointer;
+        padding: 5px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .todo {
+        height: 2rem;
+        margin: 1rem;
+        padding-left: 0rem;
+        background: white;
+        color: black;
+        font-size: 1rem;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        transition: 0.5s;
+        padding-right: .5rem;
+        width: 100vw;
+    }
+    
+}
+
+@media screen and (max-width: 800px) {
+    .task-time-container {
+        display: flex;
+        align-items: center;
+        background-color: #f7f7f7;
+        border-radius: 8px;
+        padding: 8px 15px; 
+        color: black;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        width: 1px;
+    }
+
+    .todo-form-container {
+        height: 44px;
+        width: 70vw;
+        display: flex;
+        background-color: white;
+        align-items: center;
+        border-radius: 5px;
+        margin-bottom: 6px;
+    }
+    .CreateNewCheckbox {
+        background-color: #eeeeee;
+        cursor: pointer;
+        border-radius: 1rem;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 5px;
+        width: 54vw;
+    }
+    .dropdown.off {
+        height: 60px;
+        width: 30vw;
+        background-color: white;
+        overflow-y: auto;
+        transition: 0.3 ease-in-out;
+    }
+    .dropdown .on.dropdown-toggle {
+        background: white;
+        color: black;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 50px;
+        border-radius: 1rem;
+        border: 1px solid black;
+        transition: 0.3 ease-in-out;
+        display: flex;
+        align-items: center;
+    }
+    .dropdown .arrow {
+        margin-left: 100%;
+    }
+    .left-content {
+        margin-left: -58%;
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-right: auto;
+    }
+    .add-time-button {
+        color: rgb(0, 60, 255);
+        background: rgb(219, 240, 247);
+        cursor: pointer;
+        padding: 14px 165px;
+        font-size: 12px;
+    }
+    .add-todo {
+        font-size: 12px;
+        padding: 14px 150px;
+    }
+    .form-container {
+        
+        left: 28%;
+        
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .todo-form-container {
+        height: 8vh;
+        width: 80vw;
+    }
+    .todo-list {
+        min-width: 50%;
+        list-style: none;
+        margin-right: 20vh;
+    }
+    .todo-container {
+        max-height: 60vh;
+        max-width: 120vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: none;
+        overflow-x: hidden;
+        padding-bottom: 60px; 
+    }
+    .date-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        margin: 20px 0;
+        padding: 0px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 10.5vw;
+        margin-left: 100vw;
+    }
+
+    .todo-item {
+        font-size: 12px;
+    }
+    .add-task-button {
+        color: white;
+        background: black;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        padding: 14px 120px;
+        border: none;
+        border-radius: 5rem;
+        transition: 0.3 ease-in-out;
+        font-size: 9px;
+        align-items: center;
+        justify-content: start;
+    }
+    .form-add-task-button {
+        position: fixed;
+        bottom: 0;
+        display: none;
+        justify-content: center;
+        padding: 1rem;
+        padding-left: 40%;
+        min-height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .CreateNewCheckbox {
+        background-color: #eeeeee;
+        cursor: pointer;
+        border-radius: 1rem;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 5px;
+        width: 63vw;
+    }
+    .dropdown.off {
+        height: 60px;
+        width: 30vw;
+        background-color: white;
+        overflow-y: auto;
+        transition: 0.3 ease-in-out;
+    }
+    .dropdown .on.dropdown-toggle {
+        background: white;
+        color: black;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 10px 30px;
+        border-radius: 1rem;
+        border: 1px solid black;
+        transition: 0.3 ease-in-out;
+        display: flex;
+        align-items: center;
+    }
+    .dropdown .arrow {
+        display: none;
+    }
+    .left-content {
+        margin-left: -40%;
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        margin-right: auto;
+    }
+    .add-time-button {
+        color: rgb(0, 60, 255);
+        background: rgb(219, 240, 247);
+        cursor: pointer;
+        padding: 14px 165px;
+        font-size: 12px;
+    }
+    .add-todo {
+        font-size: 12px;
+        padding: 14px 150px;
+    }
+    .form-container {  
+        left: 16.5%; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .todo {
+        height: 2rem;
+        margin: 1rem;
+        padding-left: 0rem;
+        background: white;
+        color: black;
+        font-size: 1rem;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        transition: 0.5s;
+        padding-right: .5rem;
+        width: 60vw;
+    }
+    .title {
+        margin-top: 16px;
+        margin-left: 200px;
+        color: black;
+        font-size: 24px;
+        font-weight: 500;
+    }
+    #parentDiv h3 {
+        font-weight: 200;
+        margin-left: -100px;
+    }
+    .todo-form-container {
+        height: 10vh;
+        width: 80vw;
+    }
+    .todo-list {
+        min-width: 50%;
+        list-style: none;
+        margin-right: 20vh;
+    }
+    .todo-container {
+        max-height: 60vh;
+        max-width: 120vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: none;
+        overflow-x: hidden;
+        padding-bottom: 60px; 
+    }
+    .date-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        margin: 20px 0;
+        padding: 0px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 10.5vw;
+        margin-left: 100vw;
+    }
+
+    .todo-item {
+        font-size: 12px;
+    }
+    .add-task-button {
+        color: white;
+        background: black;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        padding: 12px 100px;
+        border: none;
+        border-radius: 5rem;
+        transition: 0.3 ease-in-out;
+        font-size: 9px;
+        align-items: center;
+        justify-content: start;
+    }
+    .add-task-button span {
+        margin-left: 0rem;
+        font-size: 12px;
+    }
+    .form-add-task-button {
+        position: fixed;
+        bottom: 0;
+        display: none;
+        justify-content: center;
+        padding: 1rem;
+        padding-left: 40%;
+        min-height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .todo-form-input {
+        transform: scale(1.2);
+        margin-left: 0px;
+        border-radius: 35%;
+        -webkit-appearance: none;
+        appearance: none;
+        border: 1px solid #ccc;
+        background-color: white;
+        position: relative;
+        cursor: pointer;
+        padding: 5px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .add-task-button {
+        color: white;
+        background: black;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        padding: 12px 80px;
+        border: none;
+        border-radius: 5rem;
+        transition: 0.3 ease-in-out;
+        font-size: 9px;
+        align-items: center;
+        justify-content: start;
+    }
+    
+    .todo {
+        height: 2rem;
+        margin: 0rem;
+        padding-left: 0rem;
+        background: white;
+        color: black;
+        font-size: 1rem;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        transition: 0.5s;
+        padding-right: .5rem;
+        width: 60vw;
+    }
+    .title {
+        margin-top: 16px;
+        margin-left: 200px;
+        color: black;
+        font-size: 24px;
+        font-weight: 500;
+    }
+    #parentDiv h3 {
+        font-weight: 200;
+        margin-left: -100px;
+    }
+    .todo-form-container {
+        height: 12vh;
+        width: 80vw;
+    }
+    .todo-list {
+        min-width: 50%;
+        list-style: none;
+        margin-right: 20vh;
+    }
+    .todo-container {
+        max-height: 60vh;
+        max-width: 120vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: none;
+        overflow-x: hidden;
+        padding-bottom: 60px; 
+    }
+    .date-menu-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+        margin: 20px 0;
+        padding: 0px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 10.5vw;
+        margin-left: 100vw;
+    }
+
+    .todo-item {
+        font-size: 12px;
+    }
+    
+    .form-add-task-button {
+        position: fixed;
+        bottom: 0;
+        display: none;
+        justify-content: center;
+        padding: 1rem;
+        padding-left: 40%;
+        min-height: 20vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .time-range {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 9px;
+        color: #888;
+    }
+    .todo li {
+        flex: 1;
+    }
+
+    .todo-item {
+        color: black;
+        width: 2rem;
+        height: 2.0rem;
+        cursor: pointer;
+        padding: 0.75rem;
+        padding-top: 0px;
+        justify-self: center;
+    }
+
+    .deleted {
+        background: rgb(241, 240, 240);
+        justify-content: right;
+        margin-left: 5px;
+    }
+    .more {
+        background: rgb(241, 240, 240);
+        justify-content: right;
+        margin-left: 5px;
+        color: #616060;
+        padding: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        border: none;
+        border-radius: 20%;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .title {
+        margin-top: 16px;
+        margin-left: 150px;
+        color: black;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    #parentDiv h3 {
+        font-weight: 200;
+        font-size: 12px;
+        margin-left: -150px;
+    }
+
+    .title input {
+        font-size: 20px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+    }
+}
+
+
+.task-time-container {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7; 
+    border-radius: 8px; 
+    padding: 4px 15px; 
+    margin-top: 0px; 
+    color: #888; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); 
+    width: max-content;
+}
+
+/* Time Range Styling */
+
 .no-list-calendar{
     display: flex;
     gap: 10px;
+}
+
+.number-list {
+    background-color: #f5f5f5; /* Light background color */
+    border-radius: 12px; /* Rounded corners */
+    padding: 4px 8px; /* Padding around the number */
+    font-size: 14px; /* Font size for the number */
+    color: #333; /* Text color */
+    min-width: 30px; /* Ensures consistent width */
+    text-align: center; /* Centers text inside the span */
+    font-weight: bold; /* Makes the number bold */
+    margin-left: auto; /* Pushes the number to the far right */
+    display: inline-block; /* Ensures consistent spacing */
 }
