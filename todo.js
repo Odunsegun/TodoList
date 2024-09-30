@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             taskForm.style.display = 'none';  // Hide the form
             addTaskBtn.textContent = '+ Create new task';  // Revert button text
         }
+        checkForTaskForm(); // Check for form when the button is clicked
     });
 
     saveChangesBtn.addEventListener('click', () => {
@@ -120,6 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
         addTaskBtn.textContent = '+ Create new task';  // Revert button text
     });
     
+    //hint for username
+
     // save usename
     const nameInput = document.querySelector('#username');
     const username = localStorage.getItem('username') || '';
@@ -129,6 +132,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	nameInput.addEventListener('change', (e) => {
 		localStorage.setItem('username', e.target.value);
 	})
+
+    //hint for username
+    const yourname = document.getElementById("username");
+    const greetinghint = document.getElementById("greetingHint");
+
+    yourname.addEventListener('input', () => {
+        if(yourname.value.trim() !== ""){
+            //greetinghint.style.opacity = '0';
+            greetinghint.classList.add("hidden");
+        }else{
+            //greetinghint.style.opacity = '1';
+            greetinghint.classList.remove("hidden");
+        }})
     
     todos = JSON.parse(localStorage.getItem("todos")) || [];
     
@@ -211,8 +227,22 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdown();
 
     loadTodos();
+
+    checkForTaskForm();
+
 });
 
+
+function checkForTaskForm() {
+    const taskHint = document.getElementById("taskHint");
+    if (todoList.querySelector("form")) {
+        taskHint.classList.add("hidden"); // Hide the task hint when a form is present
+    } else {
+        taskHint.classList.remove("hidden"); // Show the task hint if no form is present
+    }
+}
+
+checkForTaskForm();
 
 
 
@@ -647,12 +677,37 @@ function removeTodoFromLocalStorage(todoForm) {
 
 
 const body = document.querySelector("header"),
-sidebar = body.querySelector(".sidebar"),
-toggle = body.querySelector(".toggle");
+    sidebar = body.querySelector(".sidebar"),
+    toggle = body.querySelector(".toggle"),
+    sidebarHint = document.getElementById("sidebarHint");
 
-toggle.addEventListener("click", () =>{
+let hasOpenedOnce = false; // Track if the sidebar has been opened once
+
+toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
+
+    if (sidebar.classList.contains("close")) {
+        // Show the arrow and text only if it hasn't been opened yet
+        if (!hasOpenedOnce) {
+            sidebarHint.style.opacity = "1";
+            sidebarHint.style.visibility = "visible";
+        }
+    } else {
+        // When the sidebar is opened, hide the hint and mark as opened once
+        sidebarHint.style.opacity = "0";
+        sidebarHint.style.visibility = "hidden";
+        hasOpenedOnce = true; // Mark that the sidebar has been opened once
+    }
 });
+
+// Initialize visibility based on the sidebar's initial state
+if (sidebar.classList.contains("close")) {
+    sidebarHint.style.opacity = "1"; // Show the arrow and text initially
+    sidebarHint.style.visibility = "visible";
+} else {
+    sidebarHint.style.opacity = "0"; // Hide the arrow and text initially
+    sidebarHint.style.visibility = "hidden";
+}
 
 
 const main = document.querySelector("main"),

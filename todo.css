@@ -12,6 +12,8 @@ body{
     font-family: "Outfit", sans-serif;
     min-height: 100vh;
     font-weight: 400px;
+    justify-content: center;
+    align-items: center;
 }
 main{
     margin-left: -80px;
@@ -31,12 +33,18 @@ main{
 }
 
 .title{
-    margin-top: 20px;
+    margin-top: 18px;
     margin-left: 300px;
+    display: flex;
+}
+
+.title h1{
+    margin-right: 5px;
     color: black;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 500;
 }
+
 .title input{
     appearance: none;
     border: none;
@@ -50,9 +58,29 @@ main{
     min-width: 1ch;
 }
 
+.greeting-hint {
+    position: absolute;
+    left: 65vw; /* Position it near the sidebar */
+    top: 30px; /* Adjust the top position as needed */
+    color: #333;
+    font-size: 18px;
+    display: flex; /* To position arrow and text */
+    align-items: center;
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+}
+.greeting-hint .arrow-text {
+    margin-left: 10px; /* Space between arrow and text */
+    font-weight: bold;
+}
+.greeting-hint.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
 h3 p{
-    margin-left: 300px;
-    
+    margin-left: 300px;   
     color: black;
 }
 
@@ -80,17 +108,19 @@ h3 p{
     background: white;
     border-radius: 5px;
     z-index: 15;
-    transition: width 0.9s ease, padding 0.9s ease;
+    transition: width 0.4s ease, padding 0.4s ease;
     box-sizing: border-box;
     display: flex; /* Display flex to make the sidebar content flexible */
     flex-direction: column; /* Align items in a column */
 }
 .sidebar.close{
-    width: auto;
+    width: 30px;
     background-color: #eeeeee;
     overflow: hidden;
     z-index: 100;
-    transition: width 0.9s ease, padding 0.9s ease;
+    height: 40px;
+    transition: width 0.4s ease, padding 0.4s ease;
+    /*transition: width 0.9s ease, padding 0.9s ease;*/
 }
 
 .menu {
@@ -184,6 +214,7 @@ label .menu-item-text{
     color: #707070;
     z-index: 1;
     position: absolute;  
+    transition: transform 0.4s ease;
 }
 
 .sidebar .toggle.arrow:hover{
@@ -194,6 +225,7 @@ label .menu-item-text{
     position: static;
     margin-top: 20px;
     transform: translateY(-50%) rotate(180deg);
+    transition: transform 0.4s ease;
 }
 
 .menu-item .menu-item-text{
@@ -215,6 +247,35 @@ label .menu-item-text{
     flex-direction: column;
     justify-content: space-between;
 }
+
+
+.sidebar-hint {
+    position: absolute;
+    left: 5vw; /* Position it near the sidebar */
+    top: 15px; /* Adjust the top position as needed */
+    color: #333;
+    font-size: 18px;
+    display: flex; /* To position arrow and text */
+    align-items: center;
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+}
+
+.sidebar-hint .arrow-text {
+    margin-left: 10px; /* Space between arrow and text */
+    font-weight: bold;
+}
+
+.sidebar.close + #sidebarHint {
+    opacity: 1; /* Show when sidebar is closed */
+    visibility: visible;
+}
+
+.sidebar:not(.close) + #sidebarHint {
+    opacity: 0; /* Hide when sidebar is open */
+    visibility: hidden;
+}
+
+
 
 /* Container Styling for Date and Menu Section */
 .date-menu-container {
@@ -302,7 +363,7 @@ body,
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    
 }
 
 #taskForm {
@@ -367,8 +428,8 @@ body,
     font-size: 16px;
     align-items: center;
     justify-content: start;
+    white-space: nowrap;
 }
-
 .add-task-button span{
    margin-left: 0.5rem;
    font-size: 16px;
@@ -378,9 +439,43 @@ body,
     opacity: 0.75;
     transition: 0.4s ease-in; 
 }
+
+.task-hint {
+    position: absolute;
+    z-index: 1500;
+    left: 20vw; /* Position it near the sidebar */
+    top: 60px;  
+    display: flex;
+    color: #333;
+    font-size: 18px;
+    display: flex; /* To position arrow and text */
+    align-items: center;
+    white-space: nowrap;
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+}
+
+.newButton{
+    position: fixed; /* Fix the button at the bottom of the screen */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    bottom: 10%;  
+}
+
+.task-hint .arrow-text {   
+    margin-left: 10px; /* Space between arrow and text */
+    font-weight: bold;
+}
+.task-hint.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .form-add-task-button{
-    position: fixed;
-    bottom: 0; 
+    position: fixed; 
     display: none;
     justify-content: center;
     padding: 1rem;
@@ -395,7 +490,6 @@ body,
     color:rgb(0, 60, 255);;
     background:rgb(219, 240, 247);
     cursor: pointer;
-    
     padding: 14px 216px;
     border-radius: 5rem;
     border: none;
@@ -404,6 +498,18 @@ body,
     background-color:rgb(158, 225, 247);
     transition: 0.4s ease-in; 
 }
+.timeForm{
+    display: flex;
+    gap: 5px;
+}
+#timestart, 
+#timeend{
+    color: black;
+}
+#taskTimeStart, #taskTimeEnd{
+    
+}
+
 
 
 .todo-container {
@@ -424,8 +530,12 @@ body,
     margin-bottom: 15px;
     justify-content: center;
     align-items: center;
-    left: 30%;
+    left: 33%;
+    justify-items: center;
+    justify-self: center;
+    align-self: center;
     bottom: 12%;
+    align-self: center;
 }
 
 
@@ -1072,6 +1182,12 @@ todo-edit-input {
 }
 
 @media screen and (max-width: 1350px){
+    .newButton{
+        left: 50%;
+    }
+    .form-container {
+        left: 29.5%;
+    }
     .todo-container {
         max-height: 60vh;
         max-width: 80vw;
@@ -1119,6 +1235,12 @@ todo-edit-input {
 }
 
 @media screen and (max-width: 1250px){
+    .newButton{
+        left: 50%;
+    }
+    .form-container {
+        left: 28%;
+    }
     .menu-button{
         display: none;
     }
@@ -1193,6 +1315,12 @@ todo-edit-input {
 }
 
 @media screen and (max-width: 992px){
+    .newButton{
+        left: 50%;
+    }
+    .form-container {
+        left: 28%;
+    }
 
     .CreateNewCheckbox {
         background-color: #eeeeee;
@@ -1268,7 +1396,6 @@ todo-edit-input {
     }
     .form-add-task-button {
         position: fixed;
-        bottom: 0;
         display: none;
         justify-content: center;
         padding: 1rem;
@@ -1304,7 +1431,7 @@ todo-edit-input {
         margin-bottom: 15px;
         justify-content: center;
         align-items: center;
-        left: 35%;
+        left: 27vh;
         bottom: 12%;
     }
 
@@ -1323,7 +1450,7 @@ todo-edit-input {
 }
 
 @media screen and (max-width: 830px) {
-
+    
     .CreateNewCheckbox {
         background-color: #eeeeee;
         cursor: pointer;
@@ -1442,7 +1569,15 @@ todo-edit-input {
         padding-right: .5rem;
         width: 100vw;
     }
+
+    .newButton{
+        left: 60vh;
+    }
+    .form-container {
+        left: 28vh;
+    }
     
+
 }
 
 @media screen and (max-width: 800px) {
@@ -1518,10 +1653,12 @@ todo-edit-input {
         font-size: 12px;
         padding: 14px 150px;
     }
+    
+    .newButton{
+        left: 57vh;
+    }
     .form-container {
-        
-        left: 28%;
-        
+        left: 28vh;
     }
 }
 
@@ -1579,7 +1716,6 @@ todo-edit-input {
     }
     .form-add-task-button {
         position: fixed;
-        bottom: 0;
         display: none;
         justify-content: center;
         padding: 1rem;
@@ -1599,11 +1735,11 @@ todo-edit-input {
         justify-content: center;
         align-items: center;
         padding: 0px 5px;
-        width: 63vw;
+        width: 88vw;
     }
     .dropdown.off {
         height: 60px;
-        width: 30vw;
+        width: 45vw;
         background-color: white;
         overflow-y: auto;
         transition: 0.3 ease-in-out;
@@ -1643,8 +1779,11 @@ todo-edit-input {
         font-size: 12px;
         padding: 14px 150px;
     }
-    .form-container {  
-        left: 16.5%; 
+    .newButton{
+        left: 40vh;
+    }
+    .form-container {
+        left: 13vh;
     }
 }
 
@@ -1731,7 +1870,6 @@ todo-edit-input {
     }
     .form-add-task-button {
         position: fixed;
-        bottom: 0;
         display: none;
         justify-content: center;
         padding: 1rem;
@@ -1741,6 +1879,13 @@ todo-edit-input {
         justify-content: center;
         align-items: center;
         overflow: hidden;
+    }
+
+    .newButton{
+        left: 27vh;
+    }
+    .form-container {
+        left: 0vh;
     }
 }
 

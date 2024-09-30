@@ -122,7 +122,11 @@
                     </div>
                 </div>
             </div>
+            
         </nav>
+        <div id="sidebarHint" class="sidebar-hint">
+            <span class="arrow-text side">← Open for lists</span>
+        </div>
     </figure>
 
     <form id="newListForm" style="display: none;">
@@ -136,10 +140,9 @@
 <main id="parentDiv">
     <body>
         <section class="greeting">
-            <h1 class="title" id="personal-name">
-                👋 Good Morning <input type="text" id="username" placeholder="Your Name...">
-            </h1>
-
+            <span class="title" id="personal-name">
+                <h1>👋 Good Morning</h1> <input type="text" id="username" placeholder="Your Name...">
+            </span>
         </section>
 
         <div class="date-menu-container">
@@ -158,13 +161,18 @@
                 
             </ul>
         </div>
-        
-        <form action="" class="form-add-task-button">
-            <button id="addTaskBtn" class="add-task-button" type="button">
-                + <span>Create new task</span>
-            </button>
-        </form>
+        <div class="newButton">
+            <form action="" class="form-add-task-button">
+                <button id="addTaskBtn" class="add-task-button" type="button">
+                    + <span>Create new task</span>
+                </button>
+            </form>
+            <div id="taskHint" class="task-hint">
+                <span class="arrow-text tasker">← Write name here</span>
+            </div>
 
+        </div>
+        
         
          
 
@@ -218,9 +226,9 @@
               
             
             <div id="timeForm" class="timeForm">
-                <label for="taskTimeStart"></label>
+                <label for="taskTimeStart" id="timestart">Start: </label>
                 <input type="time" id="taskTimeStart" name="taskTimeStart" >
-                <label for="taskTimeEnd"></label>
+                <label for="taskTimeEnd" id="timeend">End: </label>
                 <input type="time" id="taskTimeEnd" name="taskTimeEnd" required>
             </div>
 
